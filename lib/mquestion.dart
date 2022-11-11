@@ -2,14 +2,17 @@ class Question {
   final String questionText;
   final List<Answer> answersList;
 
-  Question(this.questionText, this.answersList);
+  Question(this.questionText, this.answersList,);
 }
 
 class Answer {
   final String answerText;
   final bool isCorrect;
 
-  Answer(this.answerText, this.isCorrect);
+
+
+  Answer(this.answerText, this.isCorrect,);
+
 }
 
 List<Question> getQuestions() {
@@ -19,7 +22,7 @@ List<Question> getQuestions() {
   list.add(Question(
     "A line which cuts a pair of parallel lines is called?",
     [
-      Answer("tangent", false),
+      Answer("tangent", false,),
       Answer("chord", false),
       Answer("traversal", true),
       Answer("intersector", false),

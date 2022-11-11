@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quizit/mathematics.dart';
 import 'package:quizit/compquestion.dart';
-
 import 'home.dart';
+
 
 
 class QuizScreen4 extends StatefulWidget {
@@ -17,6 +17,10 @@ class _QuizScreen4State extends State<QuizScreen4> {
   int currentQuestionIndex = 0;
   var score = 0;
   Answer? selectedAnswer;
+
+  bool answertap=false;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +52,7 @@ class _QuizScreen4State extends State<QuizScreen4> {
               _questionWidget(),
               _answerList(),
               _nextButton(),
+
             ]),
           ),
         ],
@@ -95,18 +100,25 @@ class _QuizScreen4State extends State<QuizScreen4> {
   Widget _answerButton(Answer answer) {
     bool isSelected = answer == selectedAnswer;
 
-    return Container(
+    if(isSelected){return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(vertical: 8),
       height: 48,
       child: ElevatedButton(
+
         child: Text(answer.answerText),
         style: ElevatedButton.styleFrom(
           shape: const StadiumBorder(),
-          primary: isSelected ? Colors.white60 : Colors.black38,
+
+          primary:answer.isCorrect ? Colors.green : Colors.red,
+
           onPrimary: isSelected ? Colors.white : Colors.white,
+          // primary: answer.isCorrect ? Colors.green : Colors.red,
         ),
         onPressed: () {
+          answertap=true;
+
+
 
 
 
@@ -120,7 +132,44 @@ class _QuizScreen4State extends State<QuizScreen4> {
           }
         },
       ),
-    );
+    );}
+
+    else
+      {
+        return Container(
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          height: 48,
+          child: ElevatedButton(
+
+            child: Text(answer.answerText),
+            style: ElevatedButton.styleFrom(
+              shape: const StadiumBorder(),
+
+              primary: Colors.black38,
+
+              onPrimary: isSelected ? Colors.white : Colors.white,
+              // primary: answer.isCorrect ? Colors.green : Colors.red,
+            ),
+            onPressed: () {
+              answertap=true;
+
+
+
+
+
+              if (selectedAnswer == null) {
+                if (answer.isCorrect) {
+                  score++;
+                }
+                setState(() {
+                  selectedAnswer = answer;
+                });
+              }
+            },
+          ),
+        );
+      }
   }
 
   _nextButton() {
@@ -147,6 +196,7 @@ class _QuizScreen4State extends State<QuizScreen4> {
           onPrimary: Colors.white,
         ),
         onPressed: () {
+          answertap=false;
           if (isLastQuestion) {
             //display score
 
@@ -265,4 +315,12 @@ class _QuizScreen4State extends State<QuizScreen4> {
     );
 
   }
+
+
+
+
+
+
+
+
 }

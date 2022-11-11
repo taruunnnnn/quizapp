@@ -95,18 +95,25 @@ class _QuizScreen2State extends State<QuizScreen2> {
   Widget _answerButton(Answer answer) {
     bool isSelected = answer == selectedAnswer;
 
-    return Container(
+    if(isSelected){return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(vertical: 8),
       height: 48,
       child: ElevatedButton(
+
         child: Text(answer.answerText),
         style: ElevatedButton.styleFrom(
           shape: const StadiumBorder(),
-          primary: isSelected ? Colors.white60 : Colors.black38,
+
+          primary:answer.isCorrect ? Colors.green : Colors.red,
+
           onPrimary: isSelected ? Colors.white : Colors.white,
+          // primary: answer.isCorrect ? Colors.green : Colors.red,
         ),
         onPressed: () {
+
+
+
 
 
 
@@ -120,7 +127,44 @@ class _QuizScreen2State extends State<QuizScreen2> {
           }
         },
       ),
-    );
+    );}
+
+    else
+    {
+      return Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        height: 48,
+        child: ElevatedButton(
+
+          child: Text(answer.answerText),
+          style: ElevatedButton.styleFrom(
+            shape: const StadiumBorder(),
+
+            primary: Colors.black38,
+
+            onPrimary: isSelected ? Colors.white : Colors.white,
+            // primary: answer.isCorrect ? Colors.green : Colors.red,
+          ),
+          onPressed: () {
+
+
+
+
+
+
+            if (selectedAnswer == null) {
+              if (answer.isCorrect) {
+                score++;
+              }
+              setState(() {
+                selectedAnswer = answer;
+              });
+            }
+          },
+        ),
+      );
+    }
   }
 
   _nextButton() {

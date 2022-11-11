@@ -372,7 +372,7 @@ class home extends StatelessWidget {
                          style: TextStyle(
                            fontWeight: FontWeight.bold,
                            fontFamily: 'OpenSans',
-                           fontSize: 20,
+
                            color: Colors.white60,
                          ),
                        ),
@@ -382,7 +382,7 @@ class home extends StatelessWidget {
                          style: TextStyle(
                            fontWeight: FontWeight.bold,
                            fontFamily: 'OpenSans',
-                           fontSize: 15,
+
                            color: Colors.white60,
                          ),
                        ),
@@ -392,7 +392,8 @@ class home extends StatelessWidget {
                          style: TextStyle(
 
                            fontFamily: 'Oswald',
-                           fontSize: 25,
+                           fontSize: 20,
+
                            color: Colors.white,
                          ),
                        ),
